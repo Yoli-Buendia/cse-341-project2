@@ -4,7 +4,7 @@ const mongodb = require('./data/database');//add mongo library
 const app = express(); //instance to express
 const cors = require('cors');
 
-const port = process.env.PORT || 8080; //declaring a port with a local variable
+const port = process.env.PORT || 5000; //declaring a port with a local variable
 
 app.use(bodyParser.json());
 

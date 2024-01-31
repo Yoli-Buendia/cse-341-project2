@@ -7,11 +7,11 @@ const getAll = (req, res) => {
     .db()
     .collection('groupA')
     .find()
-    .toArray().then((err, lists) => {
+    .toArray().then((lists, err) => {
     if(err) {
       res.status(400).json({message: err});
     }
-    req.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
   });
 };
