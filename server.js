@@ -7,7 +7,7 @@ const port = process.env.PORT || 8080; //declaring a port with a local variable
 
 app.use(bodyParser.json());
 
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
         'Access-Control-Allow-Headers',
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
     );
     res.setHeader('Access-Controll-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
-});*/
+});
 
 app.use('/', require('./routes'));
 
