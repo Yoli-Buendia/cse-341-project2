@@ -1,20 +1,36 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res) => {
-    const result = await mongodb.getDatabase().db().collection('groupA').find();
-    result.toArray().then((users) =>{
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users);
-    });
+const getAll = (req, res) => {
+    mongodb
+    .getDb()
+    .db()
+    .collection('users')
+    .find()
+    .toArray((err, lists) => {
+    if(err) {
+      res.status(400).json({message: err});
+    }
+    req.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+  });
 };
 
-const getSingle = async (req, res) => {
-    const userId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection('groupA').find({ _id: userId });
-    result.toArray().then((users) =>{
+const getSingle = (req, res) => {
+    if (!ObjectId.isValid(req.params.id)){
+        res.status(400).json('Must use a valid user id to find an user.');
+      }
+      mongodb
+      .getDb()
+      .db()
+      .collection('users')
+      .find({ _id: userId })
+      .toArray((err, result) => {
+        if (err) {
+          res.status (400).json({ message: err});
+        }
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users[0]);
+        res.status(200).json(result[0]);
     });
 };
 
