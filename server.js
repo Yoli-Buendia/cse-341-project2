@@ -1,11 +1,11 @@
 const express = require ('express');//add library express to this program
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const mongodb = require('./data/database');//add mongo library
 const app = express(); //instance to express
 
 const port = process.env.PORT || 8080; //declaring a port with a local variable
 
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 /*app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
