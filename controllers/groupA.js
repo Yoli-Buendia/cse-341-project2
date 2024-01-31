@@ -5,9 +5,9 @@ const getAll = (req, res) => {
     mongodb
     .getDb()
     .db()
-    .collection('users')
+    .collection('groupA')
     .find()
-    .toArray((err, lists) => {
+    .toArray().then((err, lists) => {
     if(err) {
       res.status(400).json({message: err});
     }
@@ -23,7 +23,7 @@ const getSingle = (req, res) => {
       mongodb
       .getDb()
       .db()
-      .collection('users')
+      .collection('groupA')
       .find({ _id: userId })
       .toArray((err, result) => {
         if (err) {
@@ -44,7 +44,7 @@ const createUser = async (req, res) => {
         ipaddress: req.body.ipaddress,
         favoriteColor: req.body.favoriteColor
     };
-    const response = await mongodb.getDatabase().db().collection('groupA').insertOne(user);
+    const response = await mongodb.getDb().db().collection('groupA').insertOne(user);
     if (response.acknowledged) {
         res.status(204).send();
     }else {
@@ -63,7 +63,7 @@ const updateUser = async (req, res) => {
         ipaddress: req.body.ipaddress,
         favoriteColor: req.body.favoriteColor
     };
-    const response = await mongodb.getDatabase().db().collection('groupA').replaceOne({ _id: userId }, user);
+    const response = await mongodb.getDb().db().collection('groupA').replaceOne({ _id: userId }, user);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     }else {
@@ -73,7 +73,7 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('groupA').deleteOne({ _id: userId });
+    const response = await mongodb.getDb().db().collection('groupA').deleteOne({ _id: userId });
     console.log(response);
     if (response.deletedCount > 0) {
         res.status(204).send();

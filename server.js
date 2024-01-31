@@ -2,6 +2,7 @@ const express = require ('express');//add library express to this program
 const bodyParser = require('body-parser');
 const mongodb = require('./data/database');//add mongo library
 const app = express(); //instance to express
+const cors = require('cors');
 
 const port = process.env.PORT || 8080; //declaring a port with a local variable
 
@@ -16,6 +17,9 @@ app.use((req, res, next) => {
     res.setHeader('Access-Controll-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
 });
+
+app.use(cors({ methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']}))
+app.use(cors({ origin: '*'}))
 
 app.use('/', require('./routes'));
 
