@@ -7,6 +7,6 @@ router.get('/', (req, res) => { res.send('Hello Brother Porter :)');});
     res.send('Hello world');
 });*/
 
-/*router.use('/users', require ('./users'));
-router.use('/collection2', require ('./collection2'));*/
+router.use('/groupA', require ('./groupA'));
+router.use('/groupB', require ('./groupB'));
 module.exports = router;
