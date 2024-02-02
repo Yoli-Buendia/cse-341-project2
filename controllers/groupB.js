@@ -25,7 +25,7 @@ const getSingle = (req, res) => {
       .db()
       .collection('groupB')
       .find({ _id: userId })
-      .toArray((err, result) => {
+      .toArray().then((result, err) => {
         if (err) {
           res.status (400).json({ message: err});
         }

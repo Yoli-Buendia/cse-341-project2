@@ -25,12 +25,12 @@ const getSingle = (req, res) => {
       .db()
       .collection('groupA')
       .find({ _id: userId })
-      .toArray((err, result) => {
+      .toArray().then((result, err) => {
         if (err) {
           res.status (400).json({ message: err});
         }
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(result[0]);
+        res.status(200).json(result[0]);  
     });
 };
 
