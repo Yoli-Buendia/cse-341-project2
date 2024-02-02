@@ -5,7 +5,7 @@
     "description": "Users Api",
     "version": "1.0.0"
   },
-  "host": "project1-lu4q.onrender.com",
+  "host": "project2-xtot.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
