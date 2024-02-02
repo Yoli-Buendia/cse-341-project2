@@ -1,18 +1,18 @@
 //LOCALHOST
 ### Get all groupA
-GET http://localhost:8080/groupA
+GET http://localhost:5000/groupA
 ### Get all groupB
-GET http://localhost:8080/groupB
+GET http://localhost:5000/groupB
 
 
 ### Get contact by id
-GET http://localhost:8080/groupA/65b9a2e5c35df02d9a4e1101
+GET http://localhost:5000/groupA/65b9a2e5c35df02d9a4e1101
 ### Get contact by id
-GET http://localhost:8080/groupB/65b9a416c35df02d9a4e1102
+GET http://localhost:5000/groupB/65b9a416c35df02d9a4e1102
 
 
 ### Create contact
-POST http://localhost:8080/groupA HTTP/1.1
+POST http://localhost:5000/groupA HTTP/1.1
 content-type: application/json
 
 {
@@ -25,7 +25,7 @@ content-type: application/json
     "favoriteColor": "blue"
 }
 ### Create contact
-POST http://localhost:8080/groupB HTTP/1.1
+POST http://localhost:5000/groupB HTTP/1.1
 content-type: application/json
 
 {
@@ -40,7 +40,7 @@ content-type: application/json
 
 
 ### PUT contact
-PUT http://localhost:8080/groupA/65b9a59cc35df02d9a4e1103 HTTP/1.1
+PUT http://localhost:5000/groupA/65b9a59cc35df02d9a4e1103 HTTP/1.1
 content-type: application/json
 
 {
@@ -53,7 +53,7 @@ content-type: application/json
     "favoriteColor": "yellow"
 }
 ### PUT contact
-PUT http://localhost:8080/groupB/65b9a611c35df02d9a4e1104 HTTP/1.1
+PUT http://localhost:5000/groupB/65b9a611c35df02d9a4e1104 HTTP/1.1
 content-type: application/json
 
 {
@@ -68,6 +68,6 @@ content-type: application/json
 
 
 ### DELETE contact
-DELETE http://localhost:8080/groupA/65b9a7daf6e0ce225c81a355 HTTP/1.1
+DELETE http://localhost:5000/groupA/65b9a7daf6e0ce225c81a355 HTTP/1.1
 ### DELETE contact
-DELETE http://localhost:8080/groupB/65b9a814f6e0ce225c81a356 HTTP/1.1
+DELETE http://localhost:5000/groupB/65b9a814f6e0ce225c81a356 HTTP/1.1
