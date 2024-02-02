@@ -17,8 +17,8 @@ const getAll = (req, res) => {
 };
 
 const getSingle = (req, res) => {
-    if (!ObjectId.isValid(req.params.id)){
-        res.status(400).json('Must use a valid user id to find an user.');
+   // if (!ObjectId.isValid(req.params.id)){
+     //   res.status(400).json('Must use a valid user id to find an user.');
       }
       mongodb
       .getDb()
