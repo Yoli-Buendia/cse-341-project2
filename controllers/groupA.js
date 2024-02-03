@@ -45,7 +45,8 @@ const getSingle = (req, res) => {
       .getDb()
       .db()
       .collection('groupA')
-      .find({ _id: req.params.id })
+      //.find({ _id: req.params.id })
+      .find({ _id: userId })
       .toArray()
       .then((result) => {
           res.setHeader('Content-Type', 'application/json');
