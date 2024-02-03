@@ -45,16 +45,22 @@ const getSingle = (req, res) => {
       .getDb()
       .db()
       .collection('groupA')
-      //.find({ _id: req.params.id })
-      .find({ _id: userId })
-      .toArray()
+      .find({ _id: req.params.id })
+      /*.toArray()
       .then((result) => {
           res.setHeader('Content-Type', 'application/json');
           res.status(200).json(result[0]);
       })
       .catch((err) => {
           res.status(500).json({ message: 'Internal Server Error', error: err });
-      });
+      });*/
+      .toArray().then((result, err) => {
+        if (err) {
+          res.status (400).json({ message: err});
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(result[0]);  
+    });
 };
 
 const createUser = async (req, res) => {
