@@ -16,10 +16,11 @@ const getAll = (req, res) => {
   });
 };
 
-const getSingle = (req, res) => {
-   // if (!ObjectId.isValid(req.params.id)){
-     //   res.status(400).json('Must use a valid user id to find an user.');
-      //}
+/*const getSingle = (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    if (!ObjectId.isValid(req.params.id)){
+       res.status(400).json('Must use a valid user id to find an user.');
+    }
       mongodb
       .getDb()
       .db()
@@ -32,6 +33,27 @@ const getSingle = (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(result[0]);  
     });
+};*/
+
+const getSingle = (req, res) => {
+    if (!ObjectId.isValid(req.params.id)){
+        res.status(400).json('Must use a valid user id to find a user.');
+        return;  // Return to avoid further execution
+    }
+
+    mongodb
+      .getDb()
+      .db()
+      .collection('groupA')
+      .find({ _id: req.params.id })
+      .toArray()
+      .then((result) => {
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).json(result[0]);
+      })
+      .catch((err) => {
+          res.status(500).json({ message: 'Internal Server Error', error: err });
+      });
 };
 
 const createUser = async (req, res) => {
