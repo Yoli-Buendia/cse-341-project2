@@ -4,7 +4,7 @@ router.use('/', require('./swagger'));
 
 //router.get('/', (req, res) => { res.send('Hello Brother Porter :)');});
 router.get('/', (req, res) => {
-    res.send('Hello Brother Porter :)');
+    res.send('Hello Brother Porter and graders :)');
 });
 
 router.use('/groupA', require ('./groupA'));
