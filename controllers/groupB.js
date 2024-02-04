@@ -50,11 +50,15 @@ const createUser = async (req, res) => {
     if (response.acknowledged) {
         res.status(204).send();
     }else {
-        res.status(500).json(response.error || 'Some error ocurred while updating the user B.');
+        res.status(500).json(response.error || 'Some error ocurred while updating the user.');
     }
 };
 
 const updateUser = async (req, res) => {
+    if (!ObjectId.isValid(req.params.id)){
+        res.status(400).json('Must use a valid user id to find a user.');
+        return; 
+    }
     const userId = new ObjectId(req.params.id);
     const user = {
         firstName: req.body.firstName,
@@ -69,13 +73,13 @@ const updateUser = async (req, res) => {
     if (response.modifiedCount > 0) {
         res.status(204).send();
     }else {
-        res.status(500).json(response.error || 'Some error ocurred while updating the user B.');
+        res.status(500).json(response.error || 'Some error ocurred while updating the user.');
     }
 };
 
 const deleteUser = async (req, res) => {
     if (!ObjectId.isValid(req.params.id)){
-        res.status(400).json('Must use a valid contact id to delete a user in group B.');
+        res.status(400).json('Must use a valid contact id to delete a user in group.');
     }
     const userId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('groupB').deleteOne({ _id: userId });
@@ -83,7 +87,7 @@ const deleteUser = async (req, res) => {
     if (response.deletedCount > 0) {
         res.status(204).send();
     }else {
-        res.status(500).json(response.error || 'Some error ocurred while updating the user B.');
+        res.status(500).json(response.error || 'Some error ocurred while updating the user.');
     }
 };
 
