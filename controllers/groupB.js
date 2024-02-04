@@ -19,12 +19,14 @@ const getAll = (req, res) => {
 const getSingle = (req, res) => {
     if (!ObjectId.isValid(req.params.id)){
         res.status(400).json('Must use a valid user id to find an user.');
+        return;
       }
+
       mongodb
       .getDb()
       .db()
       .collection('groupB')
-      .find({ _id: userId })
+      .find({ _id: req.params.id })
       .toArray().then((result, err) => {
         if (err) {
           res.status (400).json({ message: err});
@@ -72,6 +74,9 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+    if (!ObjectId.isValid(req.params.id)){
+        res.status(400).json('Must use a valid contact id to delete a user in group B.');
+    }
     const userId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('groupB').deleteOne({ _id: userId });
     console.log(response);

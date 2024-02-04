@@ -16,29 +16,10 @@ const getAll = (req, res) => {
   });
 };
 
-/*const getSingle = (req, res) => {
-    const userId = new ObjectId(req.params.id);
-    if (!ObjectId.isValid(req.params.id)){
-       res.status(400).json('Must use a valid user id to find an user.');
-    }
-      mongodb
-      .getDb()
-      .db()
-      .collection('groupA')
-      .find({ _id: userId })
-      .toArray().then((result, err) => {
-        if (err) {
-          res.status (400).json({ message: err});
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(result[0]);  
-    });
-};*/
-
 const getSingle = (req, res) => {
     if (!ObjectId.isValid(req.params.id)){
         res.status(400).json('Must use a valid user id to find a user.');
-        return;  // Return to avoid further execution
+        return; 
     }
 
     mongodb
@@ -46,14 +27,6 @@ const getSingle = (req, res) => {
       .db()
       .collection('groupA')
       .find({ _id: req.params.id })
-      /*.toArray()
-      .then((result) => {
-          res.setHeader('Content-Type', 'application/json');
-          res.status(200).json(result[0]);
-      })
-      .catch((err) => {
-          res.status(500).json({ message: 'Internal Server Error', error: err });
-      });*/
       .toArray().then((result, err) => {
         if (err) {
           res.status (400).json({ message: err});
@@ -101,6 +74,9 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+    if (!ObjectId.isValid(req.params.id)){
+        res.status(400).json('Must use a valid contact id to delete a user in group A.');
+    }
     const userId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('groupA').deleteOne({ _id: userId });
     console.log(response);
