@@ -8,7 +8,6 @@
   "host": "project2-xtot.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
