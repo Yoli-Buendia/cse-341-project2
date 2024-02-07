@@ -3,15 +3,16 @@ const router = express.Router();
 
 const groupAController = require ('../controllers/groupA');
 const validation = require('../middleware/validate');
+const { isAuthenticated } = require("../middleware/authenticate");
 
 router.get('/', groupAController.getAll);
 
 router.get('/:id', groupAController.getSingle);
 
-router.post('/', validation.saveContact, groupAController.createUser);
+router.post('/', isAuthenticated, validation.saveContact, groupAController.createUser);
 
-router.put('/:id', validation.saveContact, groupAController.updateUser);
+router.put('/:id', isAuthenticated, validation.saveContact, groupAController.updateUser);
 
-router.delete('/:id', groupAController.deleteUser);
+router.delete('/:id', isAuthenticated, groupAController.deleteUser);
 
 module.exports = router;
