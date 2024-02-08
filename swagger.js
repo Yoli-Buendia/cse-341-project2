@@ -5,7 +5,7 @@ const doc = {
         title: 'Users Api',
         description: 'Users Api'
     },
-    host: 'project2-xtot.onrender.com',
+    host: 'localhost:5000',
     schemes: ['https', 'http']
 };
 
